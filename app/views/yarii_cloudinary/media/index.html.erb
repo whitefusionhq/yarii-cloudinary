@@ -1,0 +1,28 @@
+<div data-controller="cloudinary-browse-media" id="yarii-cloudinary--modal" class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Browse Cloudinary</p>
+      <button data-action="cloudinary-browse-media#closeModal" class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="columns is-multiline is-mobile">
+        <% @test_images = [] %>
+        <% 50.times do
+          @test_images = @test_images + @images
+        end %>
+        <% @test_images.each do |image| %>
+          <div data-action="click->cloudinary-browse-media#selectMedia" data-cloudinary-id="<%= image[:id] %>" role="button" class="yarii-cloudinary--browse-cell column is-one-third-tablet is-one-third-desktop is-half-mobile has-text-centered">
+            <figure class="image is-128x128 m-auto">
+              <%= cl_image_tag image[:path], cloud_name: ENV['yarii_cloudinary_cloud_name'], :width => 256, :height => 256, :crop => :thumb, :format => :jpg, :quality => 60 %>
+            </figure>
+            <div class="image-name"><strong><%= image[:id] %></strong>.<%= image[:format] %></div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button data-action="cloudinary-browse-media#closeModal" class="button is-success">Done</button>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<%-
+  props = local_assigns
+  input_classes = ['input yarii-cloudinary--text-input']
+  input_classes << className if props[:className]
+  name = name_from_variable(props)
+  value = value_from_variable(props)
+%>
+<div data-controller="cloudinary-new-media" data-cloudinary-new-media-cloud="<%= ENV['yarii_cloudinary_cloud_name'] %>" data-cloudinary-new-media-browse-path="<%= yarii_cloudinary.media_path %>" class="yarii-cloudinary--field field">
+  <label class="label"><%= props[:label] %></label>
+  <div class="control">
+    <div data-target="cloudinary-new-media.thumbnail">
+      <% if value.present? %>
+        <figure class="image is-128x128 mb-3">
+          <%= cl_image_tag value, cloud_name: ENV['yarii_cloudinary_cloud_name'], :width => 256, :height => 256, :crop => :thumb, :format => :jpg, :quality => 60 %>
+        </figure>
+      <% end %>
+    </div>
+    <%= content_tag :input, nil, name: name, value: value, class: input_classes.join(' '), type: 'text', placeholder: props[:placeholder], data: {target: 'cloudinary-new-media.input'} %>
+    <button data-action="cloudinary-new-media#open" class="button is-primary">Upload</button>
+    <button data-action="cloudinary-new-media#browse" class="button is-success">Browse</button>
+  </div>
+</div>
