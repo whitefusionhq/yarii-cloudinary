@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+@mixin thumbnail {
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.25);
+  border: 1px solid rgba(0,0,0,0.5);
+}
+
+.yarii-cloudinary--field {
+  @media (min-width: 768px) {
+    .level-item {
+      padding-right: 10px;
+      &:last-of-type {
+        padding-right: 0px;
+      }
+    }
+  }
+  figure img {
+    @include thumbnail;
+  }
+  .button {
+    margin-right: 10px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+.input.yarii-cloudinary--text-input {
+}
+
+.yarii-cloudinary--browse-cell {
+  cursor: pointer;
+  &:hover {
+    background: rgba(0,0,0,0.05);
+  }
+  figure {
+    margin-bottom: 0.5rem;
+    img {
+      @include thumbnail;
+    }
+  }
+}
+

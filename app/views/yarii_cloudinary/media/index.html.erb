@@ -7,15 +7,9 @@
     </header>
     <section class="modal-card-body">
       <div class="columns is-multiline is-mobile">
-        <% @test_images = [] %>
-        <% 50.times do
-          @test_images = @test_images + @images
-        end %>
-        <% @test_images.each do |image| %>
+        <% @images.each do |image| %>
           <div data-action="click->cloudinary-browse-media#selectMedia" data-cloudinary-id="<%= image[:id] %>" role="button" class="yarii-cloudinary--browse-cell column is-one-third-tablet is-one-third-desktop is-half-mobile has-text-centered">
-            <figure class="image is-128x128 m-auto">
-              <%= cl_image_tag image[:path], cloud_name: ENV['yarii_cloudinary_cloud_name'], :width => 256, :height => 256, :crop => :thumb, :format => :jpg, :quality => 60 %>
-            </figure>
+            <%= render 'browse_thumbnail', public_id: image[:path] %>
             <div class="image-name"><strong><%= image[:id] %></strong>.<%= image[:format] %></div>
           </div>
         <% end %>

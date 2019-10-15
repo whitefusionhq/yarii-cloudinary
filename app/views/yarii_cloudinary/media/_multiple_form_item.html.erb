@@ -1,0 +1,25 @@
+<div data-index="<%= index %>" class="level">
+  <div class="level-item is-narrow">
+    <div data-target="cloudinary-multiple-media.thumbnail">
+      <% if public_id.present? %>
+        <%= render 'yarii_cloudinary/media/form_thumbnail', public_id: public_id %>
+      <% end %>
+    </div>
+  </div>
+  <div class="level-item">
+    <%= content_tag :input, nil, name: name, value: public_id, class: input_classes, type: 'text', placeholder: placeholder, data: {target: 'cloudinary-multiple-media.input'} %>
+  </div>
+  <div class="level-item is-narrow">
+    <button data-index="<%= index %>" data-action="cloudinary-multiple-media#open" class="button is-primary">
+      <span class="icon"><i class="fa fa-upload"></i></span>
+      <span>Upload</span>
+    </button>
+    <button data-index="<%= index %>" data-action="cloudinary-multiple-media#browse" class="button is-success">
+      <span class="icon"><i class="fa fa-picture-o"></i></span>
+      <span>Browse</span>
+    </button>
+    <button data-index="<%= index %>" data-action="cloudinary-multiple-media#remove" class="button is-danger">
+      <i class="fa fa-trash"></i>
+    </button>
+  </div>
+</div>

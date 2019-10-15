@@ -12,4 +12,19 @@ class YariiCloudinary::MediaController < ApplicationController
 
     render layout: false
   end
+
+  def form_thumbnail
+    render partial: 'form_thumbnail', layout: nil, formats: [:html], locals: {public_id: params[:id]}
+  end
+
+  def multiple_form_item
+    render_locals = {
+      public_id: params[:id],
+      name: params[:name],
+      index: params[:index],
+      input_classes: params[:input_classes],
+      placeholder:  params[:placeholder]
+    }
+    render partial: 'multiple_form_item', layout: nil, formats: [:html], locals: render_locals
+  end
 end

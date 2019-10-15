@@ -6,18 +6,30 @@ export default class extends Controller {
 
   connect() {
     this.cloudinaryWidget = cloudinary.createUploadWidget({
-      cloudName: this.data.get("cloud"), 
+      cloudName: this.data.get('cloud'),
+      multiple: false,
+      sources: [
+        'local',
+        'url'
+      ],
       uploadPreset: 'yarii_editor'}, (error, result) => { 
         if (!error && result && result.event === "success") {
-          this.successCallback(result.info)
+          this.widgetSuccessCallback(result.info)
         }
       }
     )
   }
 
-  successCallback(result) {
+  async widgetSuccessCallback(result) {
     const publicId = result.public_id
     this.inputTarget.value = publicId
+    const formThumbnailPath = this.data.get('formThumbnailPath').replace('/0/', `/${publicId}/`)
+    try {
+      const response = await axios.get(formThumbnailPath)
+      this.thumbnailTarget.innerHTML = response.data
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   open() {

@@ -1,0 +1,50 @@
+<%-
+  props = local_assigns
+  input_classes = ['input yarii-cloudinary--text-input']
+  input_classes << className if props[:className]
+  name = name_from_variable(props)
+  value = value_from_variable(props)
+%>
+<div
+  data-controller="cloudinary-multiple-media"
+  <% if value.is_a?(Array)
+    -%>data-cloudinary-multiple-media-ids="<%= value.join(',') %>"
+  <% end
+  -%>
+  data-cloudinary-multiple-media-cloud="<%= ENV['yarii_cloudinary_cloud_name'] %>"
+  data-cloudinary-multiple-media-browse-path="<%= yarii_cloudinary.media_path %>"
+  data-cloudinary-multiple-media-form-item-path="<%= yarii_cloudinary.multiple_form_item_medium_path(0) %>"
+  data-cloudinary-multiple-media-name="<%= name %>"
+  data-cloudinary-multiple-media-input-classes="<%= input_classes.join(' ') %>"
+  data-cloudinary-multiple-media-placeholder="<%= props[:placeholder].gsub(/"/, '&quot;') %>"
+  class="yarii-cloudinary--field field"
+>
+  <label class="label"><%= props[:label] %></label>
+  <div class="control">
+    <div data-target="cloudinary-multiple-media.rows">
+      <% if value.is_a? Array %>
+        <% value.each_with_index do |public_id, index| %>
+          <%=
+            render 'yarii_cloudinary/media/multiple_form_item',
+              name: "#{name}[]",
+              public_id: public_id,
+              index: index,
+              input_classes: input_classes.join(' '),
+              placeholder: props[:placeholder]
+          %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="has-text-centered mt-6">
+      <button data-action="cloudinary-multiple-media#add" class="button is-primary">
+        <span class="icon"><i class="fa fa-upload"></i></span>
+        <span>Add via Upload</span>
+      </button>
+      <button data-action="cloudinary-multiple-media#addBrowse" class="button is-success">
+        <span class="icon"><i class="fa fa-picture-o"></i></span>
+        <span>Add via Browse</span>
+      </button>
+    </div>
+  </div>
+</div>

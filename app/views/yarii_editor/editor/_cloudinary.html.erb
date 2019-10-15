@@ -5,18 +5,30 @@
   name = name_from_variable(props)
   value = value_from_variable(props)
 %>
-<div data-controller="cloudinary-new-media" data-cloudinary-new-media-cloud="<%= ENV['yarii_cloudinary_cloud_name'] %>" data-cloudinary-new-media-browse-path="<%= yarii_cloudinary.media_path %>" class="yarii-cloudinary--field field">
+<div
+  data-controller="cloudinary-single-media"
+  data-cloudinary-single-media-cloud="<%= ENV['yarii_cloudinary_cloud_name'] %>"
+  data-cloudinary-single-media-browse-path="<%= yarii_cloudinary.media_path %>"
+  data-cloudinary-single-media-form-thumbnail-path="<%= yarii_cloudinary.form_thumbnail_medium_path(0) %>"
+  class="yarii-cloudinary--field field"
+>
   <label class="label"><%= props[:label] %></label>
   <div class="control">
-    <div data-target="cloudinary-new-media.thumbnail">
-      <% if value.present? %>
-        <figure class="image is-128x128 mb-3">
-          <%= cl_image_tag value, cloud_name: ENV['yarii_cloudinary_cloud_name'], :width => 256, :height => 256, :crop => :thumb, :format => :jpg, :quality => 60 %>
-        </figure>
-      <% end %>
+    <div class="level">
+      <div class="level-item is-narrow">
+        <div data-target="cloudinary-single-media.thumbnail">
+          <% if value.present? %>
+            <%= render 'yarii_cloudinary/media/form_thumbnail', public_id: value %>
+          <% end %>
+        </div>
+      </div>
+      <div class="level-item">
+        <%= content_tag :input, nil, name: name, value: value, class: input_classes.join(' '), type: 'text', placeholder: props[:placeholder], data: {target: 'cloudinary-single-media.input'} %>
+      </div>
+      <div class="level-item is-narrow">
+        <button data-action="cloudinary-single-media#open" class="button is-primary">Upload</button>
+        <button data-action="cloudinary-single-media#browse" class="button is-success">Browse</button>
+      </div>
     </div>
-    <%= content_tag :input, nil, name: name, value: value, class: input_classes.join(' '), type: 'text', placeholder: props[:placeholder], data: {target: 'cloudinary-new-media.input'} %>
-    <button data-action="cloudinary-new-media#open" class="button is-primary">Upload</button>
-    <button data-action="cloudinary-new-media#browse" class="button is-success">Browse</button>
   </div>
 </div>
