@@ -19,6 +19,8 @@
         <div data-target="cloudinary-single-media.thumbnail">
           <% if value.present? %>
             <%= render 'yarii_cloudinary/media/form_thumbnail', public_id: value %>
+          <% else %>
+            <span class="icon is-medium has-text-info"><i class="fa fa-picture-o fa-lg"></i></span>
           <% end %>
         </div>
       </div>
@@ -26,8 +28,14 @@
         <%= content_tag :input, nil, name: name, value: value, class: input_classes.join(' '), type: 'text', placeholder: props[:placeholder], data: {target: 'cloudinary-single-media.input'} %>
       </div>
       <div class="level-item is-narrow">
-        <button data-action="cloudinary-single-media#open" class="button is-primary">Upload</button>
-        <button data-action="cloudinary-single-media#browse" class="button is-success">Browse</button>
+        <button data-action="cloudinary-single-media#open" class="button is-primary">
+          <span class="icon"><i class="fa fa-upload"></i></span>
+          <span>Upload</span>
+        </button>
+        <button data-action="cloudinary-single-media#browse" class="button is-success">
+          <span class="icon"><i class="fa fa-picture-o"></i></span>
+          <span>Browse</span>
+        </button>
       </div>
     </div>
   </div>
