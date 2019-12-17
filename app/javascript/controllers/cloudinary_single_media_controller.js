@@ -23,7 +23,7 @@ export default class extends Controller {
   async widgetSuccessCallback(result) {
     const publicId = result.public_id
     this.inputTarget.value = publicId
-    const formThumbnailPath = this.data.get('formThumbnailPath').replace('/0/', `/${publicId}/`)
+    const formThumbnailPath = this.data.get('formThumbnailPath').replace('/0/', `/${encodeURIComponent(publicId)}/`)
     try {
       const response = await axios.get(formThumbnailPath)
       this.thumbnailTarget.innerHTML = response.data

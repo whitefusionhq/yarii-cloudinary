@@ -37,7 +37,7 @@ export default class extends Controller {
       // When adding new images
       this.ids.push(publicId)
       this.updateIndex()
-      const formItemPath = this.data.get('formItemPath').replace('/0/', `/${publicId}/`)
+      const formItemPath = this.data.get('formItemPath').replace('/0/', `/${encodeURIComponent(publicId)}/`)
       try {
         const response = await axios.get(formItemPath, {params: {
           name: `${this.data.get('name')}[]`,
@@ -53,7 +53,7 @@ export default class extends Controller {
       }
     }
     else {
-      const formItemPath = this.data.get('formItemPath').replace('/0/', `/${publicId}/`)
+      const formItemPath = this.data.get('formItemPath').replace('/0/', `/${encodeURIComponent(publicId)}/`)
       try {
         const response = await axios.get(formItemPath, {params: {
           name: `${this.data.get('name')}[]`,
@@ -131,7 +131,7 @@ export default class extends Controller {
       // when adding new images
       this.ids.push(publicId)
       this.updateIndex()
-      const formItemPath = this.data.get('formItemPath').replace('/0/', `/${publicId}/`)
+      const formItemPath = this.data.get('formItemPath').replace('/0/', `/${encodeURIComponent(publicId)}/`)
       try {
         const response = await axios.get(formItemPath, {params: {
           name: `${this.data.get('name')}[]`,
