@@ -8,6 +8,7 @@
 <div
   data-controller="cloudinary-single-media"
   data-cloudinary-single-media-cloud="<%= ENV['yarii_cloudinary_cloud_name'] %>"
+  <% if ENV['yarii_cloudinary_tag'] -%>data-cloudinary-single-media-upload-preset="<%= ENV['yarii_cloudinary_tag'] %>"<% end -%>
   data-cloudinary-single-media-browse-path="<%= yarii_cloudinary.media_path %>"
   data-cloudinary-single-media-form-thumbnail-path="<%= yarii_cloudinary.form_thumbnail_medium_path(0) %>"
   class="yarii-cloudinary--field field"

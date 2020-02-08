@@ -1,7 +1,8 @@
 module YariiCloudinary
   class MediaController < ApplicationController
     def index
-      json_images = Cloudinary::Api.resources_by_tag('yarii_editor', cloud_name: ENV['yarii_cloudinary_cloud_name'], api_key: ENV['yarii_cloudinary_api_key'], api_secret: ENV['yarii_cloudinary_api_secret'], max_results: 200)['resources']
+      cloudinary_tag = ENV.fetch('yarii_cloudinary_tag', 'yarii_editor')
+      json_images = Cloudinary::Api.resources_by_tag(cloudinary_tag, cloud_name: ENV['yarii_cloudinary_cloud_name'], api_key: ENV['yarii_cloudinary_api_key'], api_secret: ENV['yarii_cloudinary_api_secret'], max_results: 200)['resources']
 
       @images = json_images.map do |image|
         {

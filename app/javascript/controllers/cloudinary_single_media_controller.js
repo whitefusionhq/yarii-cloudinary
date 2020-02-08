@@ -5,6 +5,8 @@ export default class extends Controller {
   static targets = ["thumbnail", "input"]
 
   connect() {
+    const uploadPreset = this.data.get('uploadPreset') || 'yarii_editor'
+
     this.cloudinaryWidget = cloudinary.createUploadWidget({
       cloudName: this.data.get('cloud'),
       multiple: false,
@@ -12,7 +14,7 @@ export default class extends Controller {
         'local',
         'url'
       ],
-      uploadPreset: 'yarii_editor'}, (error, result) => { 
+      uploadPreset: uploadPreset}, (error, result) => { 
         if (!error && result && result.event === "success") {
           this.widgetSuccessCallback(result.info)
         }

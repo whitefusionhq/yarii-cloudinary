@@ -12,6 +12,8 @@ export default class extends Controller {
     }
     this.updateIndex()
 
+    const uploadPreset = this.data.get('uploadPreset') || 'yarii_editor'
+
     this.cloudinaryWidget = cloudinary.createUploadWidget({
       cloudName: this.data.get('cloud'),
       multiple: true,
@@ -19,7 +21,7 @@ export default class extends Controller {
         'local',
         'url'
       ],
-      uploadPreset: 'yarii_editor'}, (error, result) => { 
+      uploadPreset: uploadPreset}, (error, result) => { 
         if (!error && result && result.event === "success") {
           this.widgetSuccessCallback(result.info)
         }

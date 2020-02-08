@@ -4,7 +4,7 @@ Short description and motivation. Etc.
 
 *Documentation TODO*:
 
-* `yarii_editor` upload preset needed in Cloudinary
+* `yarii_editor` upload preset needed in Cloudinary (also media needs to be tagged 'yarii_editor')
 * Add the modal to dashboard extras
 * Add the head renderer (yarii_extra_head)
 * Add the gem initializer

@@ -12,6 +12,7 @@
   <% end
   -%>
   data-cloudinary-multiple-media-cloud="<%= ENV['yarii_cloudinary_cloud_name'] %>"
+  <% if ENV['yarii_cloudinary_tag'] -%>data-cloudinary-multiple-media-upload-preset="<%= ENV['yarii_cloudinary_tag'] %>"<% end -%>
   data-cloudinary-multiple-media-browse-path="<%= yarii_cloudinary.media_path %>"
   data-cloudinary-multiple-media-form-item-path="<%= yarii_cloudinary.multiple_form_item_medium_path(0) %>"
   data-cloudinary-multiple-media-name="<%= name %>"
