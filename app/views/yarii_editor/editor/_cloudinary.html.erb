@@ -1,9 +1,8 @@
 <%-
-  props = local_assigns
   input_classes = ['input yarii-cloudinary--text-input']
-  input_classes << className if props[:className]
-  name = name_from_variable(props)
-  value = value_from_variable(props)
+  input_classes << className if local_assigns[:className]
+  name = name_from_variable(assigns)
+  value = value_from_variable(assigns)
 %>
 <div
   data-controller="cloudinary-single-media"
@@ -13,7 +12,7 @@
   data-cloudinary-single-media-form-thumbnail-path="<%= yarii_cloudinary.form_thumbnail_medium_path(0) %>"
   class="yarii-cloudinary--field field"
 >
-  <label class="label"><%= props[:label] %></label>
+  <label class="label"><%= label %></label>
   <div class="control">
     <div class="level">
       <div class="level-item is-narrow">
@@ -26,7 +25,7 @@
         </div>
       </div>
       <div class="level-item">
-        <%= content_tag :input, nil, name: name, value: value, class: input_classes.join(' '), type: 'text', placeholder: props[:placeholder], data: {target: 'cloudinary-single-media.input'} %>
+        <%= content_tag :input, nil, name: name, value: value, class: input_classes.join(' '), type: 'text', placeholder: placeholder, data: {target: 'cloudinary-single-media.input'} %>
       </div>
       <div class="level-item is-narrow">
         <button data-action="cloudinary-single-media#open" class="button is-primary">

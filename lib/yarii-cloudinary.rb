@@ -13,5 +13,3 @@ module YariiCloudinary
   end
 end
 
-module Yarii
-end

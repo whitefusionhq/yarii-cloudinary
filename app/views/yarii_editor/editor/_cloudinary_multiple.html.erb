@@ -1,9 +1,8 @@
 <%-
-  props = local_assigns
   input_classes = ['input yarii-cloudinary--text-input']
-  input_classes << className if props[:className]
-  name = name_from_variable(props)
-  value = value_from_variable(props)
+  input_classes << className if local_assigns[:className]
+  name = name_from_variable(local_assigns)
+  value = value_from_variable(local_assigns)
 %>
 <div
   data-controller="cloudinary-multiple-media"
@@ -17,10 +16,10 @@
   data-cloudinary-multiple-media-form-item-path="<%= yarii_cloudinary.multiple_form_item_medium_path(0) %>"
   data-cloudinary-multiple-media-name="<%= name %>"
   data-cloudinary-multiple-media-input-classes="<%= input_classes.join(' ') %>"
-  data-cloudinary-multiple-media-placeholder="<%= props[:placeholder].gsub(/"/, '&quot;') %>"
+  data-cloudinary-multiple-media-placeholder="<%= placeholder.gsub(/"/, '&quot;') %>"
   class="yarii-cloudinary--field field"
 >
-  <label class="label"><%= props[:label] %></label>
+  <label class="label"><%= label %></label>
   <div class="control">
     <div data-target="cloudinary-multiple-media.rows">
       <% if value.is_a? Array %>
@@ -31,7 +30,7 @@
               public_id: public_id,
               index: index,
               input_classes: input_classes.join(' '),
-              placeholder: props[:placeholder]
+              placeholder: placeholder
           %>
         <% end %>
       <% end %>
