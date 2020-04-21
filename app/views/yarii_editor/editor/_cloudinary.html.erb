@@ -1,8 +1,8 @@
 <%-
   input_classes = ['input yarii-cloudinary--text-input']
   input_classes << className if local_assigns[:className]
-  name = name_from_variable(assigns)
-  value = value_from_variable(assigns)
+  name = name_from_variable(local_assigns)
+  value = value_from_variable(local_assigns)
 %>
 <div
   data-controller="cloudinary-single-media"
