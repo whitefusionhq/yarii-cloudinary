@@ -1,15 +1,27 @@
 {
   "name": "yarii-cloudinary",
-  "private": true,
+  "version": "0.2.5",
+  "main": "app/javascript/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whitefusionhq/yarii-cloudinary"
+  },
+  "author": "Jared White <jared@whitefusion.io>",
+  "homepage": "https://whitefusion.io",
+  "license": "MIT",
+  "private": false,
   "dependencies": {
-    "@rails/webpacker": "^4.0.7",
     "axios": "^0.18.0",
     "cloudinary-core": "^2.7.4",
     "html-loader": "^0.5.5",
     "stimulus": "^1.1.1"
   },
-  "version": "0.1.0",
   "devDependencies": {
+    "@rails/webpacker": "^4.0.7",
     "webpack-dev-server": "^3.8.1"
-  }
+  },
+  "files": [
+    "app/javascript",
+    "app/styles"
+  ]
 }
