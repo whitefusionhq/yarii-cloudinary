@@ -1,0 +1,7 @@
+<% if model.cloudinary_id.present? %>
+  <div class="card-image">
+    <figure class="image is-2by1">
+      <%= cl_image_tag model.cloudinary_id, :width => 1024, :crop => :limit, :format => :jpg, :quality => 65, :cloud_name => ENV['yarii_cloudinary_cloud_name'], style: 'object-fit:cover' %>
+    </figure>
+  </div>
+<% end %>
