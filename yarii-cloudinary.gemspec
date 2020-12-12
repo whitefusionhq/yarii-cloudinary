@@ -16,6 +16,6 @@ Gem::Specification.new do |spec|
 
   spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r!^(test|script|spec|features)/!) }
 
-  spec.add_dependency "rails", "~> 6.0.0"
+  spec.add_dependency "rails", "~> 6.0"
   spec.add_dependency "cloudinary", "~> 1.12"
 end
